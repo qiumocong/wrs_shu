@@ -32,7 +32,6 @@ dependencies = [
     "pyreadline>=2.1",
     "pyrealsense2>=2.56.5.9235",
     "pyserial>=3.4",
-    "pytracik",
     "pyvista~=0.43.8",
     "pyyaml>=5.3.1",
     "requests~=2.26.0",
@@ -46,13 +45,12 @@ dependencies = [
     "stl~=0.0.2",
     "sympy~=1.12",
     "tifffile>=2024.8.30",
-    "toppra>=0.6.3",
+    "toppra==0.6.0",
     "torch~=2.3.1",
     "torchmetrics~=1.4.0.post0",
     "tqdm~=4.66.4",
     "trimesh~=4.3.2",
     "ultralytics>=8.2.40",
-    "ur-ikfast",
     "ur-rtde>=1.6.2",
 ]
 
