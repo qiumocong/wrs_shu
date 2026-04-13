@@ -320,6 +320,39 @@ class World(ShowBase, object):
         self.lookatpos = lookatpos
         self.inputmgr = im.InputManager(self, self.lookatpos)
 
+    def get_cam_pos(self):
+        """
+        获取当前相机的世界坐标位置
+
+        Returns:
+            np.ndarray: 相机位置的3D坐标数组 [x, y, z]
+        """
+        cam_pos = self.cam.getPos()
+        return np.array([cam_pos.x, cam_pos.y, cam_pos.z])
+
+    def enable_cam_pos_debug(self, interval=0.1):
+        """
+        启用相机位置和观察点调试输出
+
+        Args:
+            interval (float): 输出间隔时间（秒）
+        """
+        taskMgr.doMethodLater(interval, self._debug_cam_info, "debug_cam_info")
+
+    def _debug_cam_info(self, task):
+        """调试任务：输出相机位置和观察点"""
+        cam_pos = self.get_cam_pos()
+
+        # 获取当前实际的观察点（从相机节点计算）
+        cam_forward = self.cam.getQuat().xform(Vec3(0, 1, 0))  # 相机前方向量
+        cam_lookat = self.cam.getPos() + cam_forward * 10  # 假设观察距离10个单位
+
+        print(f"相机位置: [{cam_pos[0]:.3f}, {cam_pos[1]:.3f}, {cam_pos[2]:.3f}] | "
+              f"观察点: [{cam_lookat.x:.3f}, {cam_lookat.y:.3f}, {cam_lookat.z:.3f}] | "
+              f"目标点: [{self.lookatpos[0]:.3f}, {self.lookatpos[1]:.3f}, {self.lookatpos[2]:.3f}]")
+
+        return task.again
+
     def set_cartoonshader(self, switchtoon=False):
         """
         set cartoon shader, the following program is a reference

@@ -98,12 +98,12 @@ class Ur3EDualUrx(object):
             pc_server_socket.send(buf)
             pc_server_socket.close()
         elif component_name in ["lft_arm", "lft_hnd"]:
-            self._lft_arm_hnd.move_jntspace_path(path=path,
+            self._lft_arm_hnd.move_jspace_path(path=path,
                                                control_frequency=control_frequency,
                                                interval_time=interval_time,
                                                interpolation_method=interpolation_method)
         elif component_name in ["rgt_arm", "rgt_hnd"]:
-            self._rgt_arm_hnd.move_jntspace_path(path=path,
+            self._rgt_arm_hnd.move_jspace_path(path=path,
                                                control_frequency=control_frequency,
                                                interval_time=interval_time,
                                                interpolation_method=interpolation_method)

@@ -1,5 +1,7 @@
 import math
 import copy
+from typing import Literal
+
 import numpy as np
 import basis.robot_math as rm
 import robot_sim._kinematics.jlchain_mesh as jlm
@@ -361,19 +363,6 @@ class JLChain(object):
                                 local_minima=local_minima,
                                 toggle_debug=toggle_debug)
 
-    def tracik(self,
-               urdf_path='',
-               base_link_name='',
-               tip_link_name='',
-               tgt_pos=np.zeros(3),
-               tgt_rotmat=np.eye(3),
-               seed_jnt_values=None):
-        return self._ikt.tracik(urdf_path=urdf_path,
-                                base_link_name=base_link_name,
-                                tip_link_name=tip_link_name,
-                                tgt_pos=tgt_pos,
-                                tgt_rotmat=tgt_rotmat,
-                                seed_jnt_values=seed_jnt_values)
 
     def manipulability(self,
                        tcp_jnt_id,

@@ -68,20 +68,6 @@ class RobotInterface(object):
                                                         local_minima=local_minima,
                                                         toggle_debug=toggle_debug)
 
-    def tracik(self,
-               component_name: str = "arm",
-               urdf_path='',
-               base_link_name='',
-               tip_link_name='',
-               tgt_pos=np.zeros(3),
-               tgt_rotmat=np.eye(3),
-               seed_jnt_values=None):
-        return self.manipulator_dict[component_name].tracik(urdf_path=urdf_path,
-                                                            base_link_name=base_link_name,
-                                                            tip_link_name=tip_link_name,
-                                                            tgt_pos=tgt_pos,
-                                                            tgt_rotmat=tgt_rotmat,
-                                                            seed_jnt_values=seed_jnt_values)
 
     def manipulability(self,
                        tcp_jnt_id=None,

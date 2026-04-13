@@ -4,10 +4,10 @@ import logging
 import math
 import time
 
-from robotconn.robotiq.rtqgripper import Robotiq_Two_Finger_Gripper
-from utiltools import robotmath as rm
-import urx.urrobot as urrobot
-import robotconn.programbuilder as pb
+# from robot_con.robotiq.rtqgripper import Robotiq_Two_Finger_Gripper
+# from utiltools import robotmath as rm
+import drivers.urx.ur_robot as urrobot
+# import robot_con.programbuilder as pb
 import numpy as np
 
 import socket

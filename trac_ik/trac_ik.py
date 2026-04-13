@@ -70,7 +70,7 @@ class TracIK(object):
     def __init__(self, base_link_name: str,
                  tip_link_name: str,
                  urdf_path: str,
-                 timeout: float = .005,
+                 timeout: float = .007,
                  epsilon: float = 1e-5,
                  solver_type: Literal['Speed', 'Distance', 'Manip1', 'Manip2'] = "Speed"):
         """

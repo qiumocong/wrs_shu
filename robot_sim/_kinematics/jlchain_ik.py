@@ -2,7 +2,6 @@ import math
 import numpy as np
 import basis.robot_math as rm
 import warnings as wns
-from trac_ik import TracIK
 
 
 class JLChainIK(object):
@@ -23,7 +22,6 @@ class JLChainIK(object):
         self.jmvmiddle = (self.jmvmax + self.jmvmin) / 2
         self.jmvmin_threshhold = self.jmvmin + self.jmvrng * self.wln_ratio
         self.jmvmax_threshhold = self.jmvmax - self.jmvrng * self.wln_ratio
-        self.iksolver_cache = {}
 
     def _jacobian_sgl(self, tcp_jnt_id, tcp_loc_pos, tcp_loc_rotmat):
         """
@@ -468,21 +466,6 @@ class JLChainIK(object):
         self.jlc_object.fk(jnt_values_bk)
         print('Failed to solve the IK, returning None.')
         return None
-
-    def tracik(self, urdf_path, base_link_name, tip_link_name, tgt_pos, tgt_rotmat, seed_jnt_values=None):
-        key = (urdf_path, base_link_name, tip_link_name)
-        if key not in self.iksolver_cache:
-            self.iksolver_cache[key] = TracIK(base_link_name=base_link_name,
-                                              tip_link_name=tip_link_name,
-                                              urdf_path=urdf_path)
-        iksolver = self.iksolver_cache[key]
-        # jnt_values_iter = self.jlc_object.homeconf if seed_jnt_values is None else seed_jnt_values.copy()
-        if seed_jnt_values is not None:
-            jnt_values_iter = seed_jnt_values.copy()
-        else:
-            jnt_values_iter = self.jlc_object.homeconf + np.random.uniform(-0.1, 0.1, size=self.jlc_object.ndof)
-        result = iksolver.ik(tgt_pos, tgt_rotmat, jnt_values_iter)
-        return result
 
     def numik_rel(self, deltapos, deltarotmat, tcp_jnt_id=None, tcp_loc_pos=None, tcp_loc_rotmat=None):
         """

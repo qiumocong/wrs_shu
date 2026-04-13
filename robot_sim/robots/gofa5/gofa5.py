@@ -444,6 +444,7 @@ if __name__ == '__main__':
     conf = robot_s.tracik("arm", urdf_file, 'base_link', 'link_6', test_pos, test_rot, seed_jnt)
     robot_s.fk('arm', conf)
     robot_s.gen_meshmodel().attach_to(base)
+    base.enable_cam_pos_debug(0.5)
     base.run()
     # component_name = 'arm'
     # jnt_values = robot_s.ik(component_name, tgt_pos, tgt_rotmat)

@@ -245,10 +245,10 @@ if __name__ == '__main__':
 
 
     base = wd.World(cam_pos=[.5, .5, .5], lookat_pos=[0, 0, 0], auto_cam_rotate=False)
-    gm.gen_frame().attach_to(base)
+    # gm.gen_frame().attach_to(base)
     # cm.CollisionModel("meshes/dual_realsense.stl", expand_radius=.001).attach_to(base)
-    grpr = Dh76(enable_cc=True)
-    grpr.open()
-    grpr.show_cdprimit()
+    grpr = Dh76(enable_cc=True, fingertip_type='r_76')
+    grpr.jaw_to(0.076)
+    # grpr.show_cdprimit()
     grpr.gen_meshmodel().attach_to(base)
     base.run()
